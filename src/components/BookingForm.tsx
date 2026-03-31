@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Wand2, X } from 'lucide-react';
-import { supabase, type Booking } from '../lib/supabase';
+import emailjs from '@emailjs/browser';
 
 interface BookingFormProps {
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface BookingFormProps {
 
 export function BookingForm({ isOpen, onClose }: BookingFormProps) {
   const [formData, setFormData] = useState({
-    service_type: 'appliance_repair' as Booking['service_type'],
+    service_type: 'appliance_repair',
     customer_name: '',
     customer_email: '',
     customer_phone: '',
@@ -28,9 +28,21 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase.from('bookings').insert([formData]);
-
-      if (error) throw error;
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          service_type: formData.service_type,
+          customer_name: formData.customer_name,
+          customer_email: formData.customer_email,
+          customer_phone: formData.customer_phone,
+          service_address: formData.service_address,
+          preferred_date: formData.preferred_date,
+          preferred_time: formData.preferred_time,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
 
       setSubmitStatus('success');
       setFormData({
@@ -85,14 +97,15 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
               onChange={(e) =>
                 setFormData({
                   ...formData,
-                  service_type: e.target.value as Booking['service_type'],
+                  service_type: e.target.value,
                 })
               }
               className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#d4af37] focus:outline-none transition-colors"
             >
-              <option value="appliance_repair">Appliance Repair</option>
+              <option value="appliance_repair">Appliance Repair and Installation</option>
               <option value="moving">Moving Assistance</option>
               <option value="cleaning">Cleaning Services</option>
+              <option value="handyman">HandyMan Services</option>
             </select>
           </div>
 

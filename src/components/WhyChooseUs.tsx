@@ -1,4 +1,4 @@
-import { Clock, Shield, DollarSign, Award } from 'lucide-react';
+import { Clock, DollarSign, Award } from 'lucide-react';
 
 export function WhyChooseUs() {
   const reasons = [
@@ -6,11 +6,6 @@ export function WhyChooseUs() {
       icon: <Clock className="w-8 h-8" />,
       title: 'Same-Day Service',
       description: 'We understand urgency. Get your issues resolved today.',
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: 'Licensed Professionals',
-      description: 'Our team is fully licensed, insured, and background-checked.',
     },
     {
       icon: <Award className="w-8 h-8" />,
@@ -36,7 +31,7 @@ export function WhyChooseUs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
             <div
               key={index}

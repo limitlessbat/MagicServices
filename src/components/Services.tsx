@@ -11,8 +11,8 @@ export function Services() {
   const services: Service[] = [
     {
       icon: <Wrench className="w-12 h-12" />,
-      title: 'Appliance Repair',
-      description: 'We fix all appliances with expert precision',
+      title: 'Appliance Repair and Installation',
+      description: 'We fix and install all appliances with expert precision',
       features: [
         'Refrigerators & Freezers',
         'Washers & Dryers',
@@ -45,6 +45,18 @@ export function Services() {
         'Maintenance Cleaning',
       ],
     },
+    {
+      icon: <Wrench className="w-12 h-12" />,
+      title: 'HandyMan Services',
+      description: 'Professional general repair, maintenance, installation, and small home improvement tasks',
+      features: [
+        'General Repairs',
+        'Maintenance Work',
+        'Installation Services',
+        'Home Improvements',
+        'Small Projects',
+      ],
+    },
   ];
 
   return (
@@ -59,7 +71,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div
               key={index}

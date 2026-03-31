@@ -1,10 +1,10 @@
-import { Wand2, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Wand2 } from 'lucide-react';
 
 export function Footer() {
   return (
     <footer className="bg-gradient-to-br from-[#1a365d] to-[#2d4a7c] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Wand2 className="w-8 h-8 text-[#d4af37]" />
@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="space-y-2 text-gray-300">
               <li>
                 <a href="#services" className="hover:text-[#d4af37] transition-colors">
-                  Appliance Repair
+                  Appliance Repair and Installation
                 </a>
               </li>
               <li>
@@ -36,50 +36,20 @@ export function Footer() {
                   Cleaning Services
                 </a>
               </li>
+              <li>
+                <a href="#services" className="hover:text-[#d4af37] transition-colors">
+                  HandyMan Services
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-lg font-bold mb-4 text-[#d4af37]">Contact</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>(555) 123-4567</li>
+              <li>551 900 0999</li>
               <li>info@magicservices.com</li>
-              <li>Greater Metro Area</li>
             </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-[#d4af37]">Follow Us</h3>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="bg-white/10 hover:bg-[#d4af37] p-3 rounded-full transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 hover:bg-[#d4af37] p-3 rounded-full transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 hover:bg-[#d4af37] p-3 rounded-full transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 hover:bg-[#d4af37] p-3 rounded-full transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
           </div>
         </div>
 

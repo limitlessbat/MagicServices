@@ -4,21 +4,18 @@ export function Testimonials() {
   const testimonials = [
     {
       name: 'Sarah Johnson',
-      location: 'Downtown',
       rating: 5,
       text: 'Magic Services lives up to its name! They fixed my refrigerator the same day I called. Professional, courteous, and reasonably priced. Highly recommend!',
       service: 'Appliance Repair',
     },
     {
       name: 'Michael Chen',
-      location: 'Westside',
       rating: 5,
       text: 'Moving can be so stressful, but these guys made it a breeze. They were careful with all my furniture and got everything done faster than expected. Worth every penny!',
       service: 'Moving Assistance',
     },
     {
       name: 'Emily Rodriguez',
-      location: 'East End',
       rating: 5,
       text: 'Best cleaning service I\'ve ever used! They transformed my post-renovation mess into a spotless home. The attention to detail is incredible. I\'m a customer for life!',
       service: 'Cleaning Services',
@@ -60,7 +57,6 @@ export function Testimonials() {
                 <p className="font-bold text-[#1a365d] text-lg">
                   {testimonial.name}
                 </p>
-                <p className="text-gray-600 text-sm">{testimonial.location}</p>
                 <p className="text-[#d4af37] text-sm font-semibold mt-1">
                   {testimonial.service}
                 </p>

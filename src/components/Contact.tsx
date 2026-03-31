@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, Clock } from 'lucide-react';
 
 export function Contact() {
   return (
@@ -13,18 +13,15 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="text-center p-6 bg-[#f7fafc] rounded-xl">
             <div className="bg-[#d4af37] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-[#1a365d]">
               <Phone className="w-8 h-8" />
             </div>
             <h3 className="font-bold text-[#1a365d] mb-2">Phone</h3>
-            <a
-              href="tel:+15551234567"
-              className="text-gray-600 hover:text-[#d4af37] transition-colors"
-            >
-              (555) 123-4567
-            </a>
+            <p className="text-gray-600">
+              551 900 0999
+            </p>
           </div>
 
           <div className="text-center p-6 bg-[#f7fafc] rounded-xl">
@@ -32,23 +29,8 @@ export function Contact() {
               <Mail className="w-8 h-8" />
             </div>
             <h3 className="font-bold text-[#1a365d] mb-2">Email</h3>
-            <a
-              href="mailto:info@magicservices.com"
-              className="text-gray-600 hover:text-[#d4af37] transition-colors"
-            >
-              info@magicservices.com
-            </a>
-          </div>
-
-          <div className="text-center p-6 bg-[#f7fafc] rounded-xl">
-            <div className="bg-[#d4af37] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-[#1a365d]">
-              <MapPin className="w-8 h-8" />
-            </div>
-            <h3 className="font-bold text-[#1a365d] mb-2">Service Area</h3>
             <p className="text-gray-600">
-              Greater Metro Area
-              <br />
-              & Surrounding Cities
+              info@magicservices.com
             </p>
           </div>
 
@@ -58,9 +40,7 @@ export function Contact() {
             </div>
             <h3 className="font-bold text-[#1a365d] mb-2">Hours</h3>
             <p className="text-gray-600">
-              Mon-Fri: 7 AM - 8 PM
-              <br />
-              Sat-Sun: 8 AM - 6 PM
+              Available 24/7
             </p>
           </div>
         </div>
