@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Wand2, X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
@@ -22,6 +22,10 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY');
+  }, []);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -29,19 +33,18 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
 
     try {
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
         {
           service_type: formData.service_type,
-          customer_name: formData.customer_name,
-          customer_email: formData.customer_email,
-          customer_phone: formData.customer_phone,
+          full_name: formData.customer_name,
+          phone_number: formData.customer_phone,
+          email_address: formData.customer_email,
           service_address: formData.service_address,
           preferred_date: formData.preferred_date,
           preferred_time: formData.preferred_time,
-          message: formData.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+          additional_details: formData.message,
+        }
       );
 
       setSubmitStatus('success');
@@ -231,7 +234,7 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
 
           {submitStatus === 'success' && (
             <div className="bg-green-50 border-2 border-green-500 text-green-700 px-4 py-3 rounded-lg">
-              Booking submitted successfully! We'll contact you soon.
+              Booking request sent successfully. We will contact you shortly.
             </div>
           )}
 
