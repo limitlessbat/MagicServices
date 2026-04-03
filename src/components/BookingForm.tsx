@@ -1,9 +1,10 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { Wand2, X } from 'lucide-react';
 
 declare global {
   interface Window {
     emailjs: {
+      init: (publicKey: string) => void;
       send: (
         serviceId: string,
         templateId: string,
@@ -19,6 +20,9 @@ interface BookingFormProps {
 }
 
 export function BookingForm({ isOpen, onClose }: BookingFormProps) {
+  useEffect(() => {
+    window.emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
   const [formData, setFormData] = useState({
     service_type: 'appliance_repair',
     customer_name: '',
@@ -40,8 +44,8 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
 
     try {
       await window.emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           service_type: formData.service_type,
           full_name: formData.customer_name,
