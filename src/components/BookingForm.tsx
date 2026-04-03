@@ -42,10 +42,35 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+    if (!publicKey || publicKey === 'YOUR_PUBLIC_KEY') {
+      console.error('EmailJS Public Key is not configured');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!serviceId || serviceId === 'YOUR_SERVICE_ID') {
+      console.error('EmailJS Service ID is not configured');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!templateId || templateId === 'YOUR_TEMPLATE_ID') {
+      console.error('EmailJS Template ID is not configured');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       await window.emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           service_type: formData.service_type,
           full_name: formData.customer_name,
@@ -251,7 +276,12 @@ export function BookingForm({ isOpen, onClose }: BookingFormProps) {
 
           {submitStatus === 'error' && (
             <div className="bg-red-50 border-2 border-red-500 text-red-700 px-4 py-3 rounded-lg">
-              Something went wrong. Please try again.
+              <div className="font-semibold mb-1">Booking Failed</div>
+              <div className="text-sm">
+                {!import.meta.env.VITE_EMAILJS_PUBLIC_KEY || import.meta.env.VITE_EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'
+                  ? 'EmailJS Public Key not configured. Please add your credentials to .env file.'
+                  : 'Something went wrong. Please check your EmailJS credentials and try again.'}
+              </div>
             </div>
           )}
 
